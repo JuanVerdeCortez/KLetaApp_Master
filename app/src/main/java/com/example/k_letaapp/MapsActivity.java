@@ -2,14 +2,19 @@ package com.example.k_letaapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -38,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationClient;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,29 +53,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+        FloatingActionButton btnAnadir = (FloatingActionButton) findViewById(R.id.btnAñadir);
+        btnAnadir.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast toast= Toast.makeText(getApplicationContext(), "Añadir un nuevo punto", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+                //Intent intent = new Intent(getApplicationContext(), FormularioServicioActivity.class);
+                //startActivity(intent);
+            }
+        });
+
     }
-
-    //Pruebalo si sale el toast
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
 
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
 
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         mMap.setMyLocationEnabled(true);
+
 
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
@@ -77,15 +86,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
         double latitud = location.getLatitude();
         double longitud = location.getLongitude();
-
-
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitud, longitud), 18.0f));
 
 
-        googleMap.getUiSettings().setZoomControlsEnabled(true);
-        googleMap.setTrafficEnabled(false);
-
-        String url = "http://cpproyect.atwebpages.com/index.php/coordenadas";
+         String url = "http://cpproyect.atwebpages.com/index.php/coordenadas";
 
         //String url = "http://k-leta.heliohost.org/api/puntos";
 
@@ -108,7 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 double lon = obj.getDouble("longitud");
                                 String lugar = obj.getString("lugar");
 
-                              //  double lat = obj.getDouble("punto_latitud");
+                               // double lat = obj.getDouble("punto_latitud");
                                // double lon = obj.getDouble("punto_longitud");
                                // String lugar = obj.getString("punto_nombre");
 
@@ -124,9 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         }
 
-                        //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.125996, -76.991535), 11));
-
-                        googleMap.getUiSettings().setZoomControlsEnabled(true);
+                        googleMap.getUiSettings().setZoomControlsEnabled(false);
                         googleMap.setTrafficEnabled(false);
                         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
@@ -139,13 +141,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         queue.add(jsonArrayRequest);
-
-        // Add a marker in Sydney and move the camera
-        /*LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
-        //obtenerUbicacion();
-
 
 
     }
@@ -179,15 +174,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-     /*   mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    LatLng ubicacion = new LatLng(location.getLatitude(), location.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(ubicacion).title("Me encuentro aqui"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
-                }
-            }
-        });*/
     }
 }
