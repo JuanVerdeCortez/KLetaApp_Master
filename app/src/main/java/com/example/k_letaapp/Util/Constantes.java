@@ -26,7 +26,7 @@ public class Constantes {
             }
 
             public static boolean isValidPassword(String password){
-                return password.length() > 4;
+                return (password.length() >= 6 & password.length() <= 12);
             }
         }
     }

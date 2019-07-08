@@ -1,81 +1,120 @@
 package com.example.k_letaapp.Entity;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+
 public class Usuario {
-    private String nombre;
-    private String apellido;
-    private String documento;
-    private String genero;
-    private String correo;
-    private String password;
-    private String imagen;
 
-    public Usuario (){
+    @SerializedName("usuario_id")
+    @Expose
+    private String usuarioId;
+    @SerializedName("usuario_nombre")
+    @Expose
+    private String usuarioNombre;
+    @SerializedName("usuario_apellido")
+    @Expose
+    private String usuarioApellido;
+    @SerializedName("usuario_documento")
+    @Expose
+    private String usuarioDocumento;
+    @SerializedName("usuario_genero")
+    @Expose
+    private String usuarioGenero;
+    @SerializedName("usuario_correo")
+    @Expose
+    private String usuarioCorreo;
+    @SerializedName("usuario_password")
+    @Expose
+    private String usuarioPassword;
+    @SerializedName("usuario_fecha_alta")
+    @Expose
+    private String usuarioFechaAlta;
+    @SerializedName("usuario_fecha_modificacion")
+    @Expose
+    private String usuarioFechaModificacion;
+    @SerializedName("imagen_id")
+    @Expose
+    private Object imagenId;
 
+    public String getUsuarioId() {
+        return usuarioId;
     }
 
-    public Usuario(String nombre, String apellido, String documento, String genero, String correo, String password, String imagen) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.documento = documento;
-        this.genero = genero;
-        this.correo = correo;
-        this.password = password;
-        this.imagen = imagen;
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsuarioNombre() {
+        return usuarioNombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsuarioNombre(String usuarioNombre) {
+        this.usuarioNombre = usuarioNombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getUsuarioApellido() {
+        return usuarioApellido;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setUsuarioApellido(String usuarioApellido) {
+        this.usuarioApellido = usuarioApellido;
     }
 
-    public String getDocumento() {
-        return documento;
+    public String getUsuarioDocumento() {
+        return usuarioDocumento;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setUsuarioDocumento(String usuarioDocumento) {
+        this.usuarioDocumento = usuarioDocumento;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getUsuarioGenero() {
+        return usuarioGenero;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setUsuarioGenero(String usuarioGenero) {
+        this.usuarioGenero = usuarioGenero;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getUsuarioCorreo() {
+        return usuarioCorreo;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setUsuarioCorreo(String usuarioCorreo) {
+        this.usuarioCorreo = usuarioCorreo;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUsuarioPassword() {
+        return usuarioPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsuarioPassword(String usuarioPassword) {
+        this.usuarioPassword = usuarioPassword;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getUsuarioFechaAlta() {
+        return usuarioFechaAlta;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setUsuarioFechaAlta(String usuarioFechaAlta) {
+        this.usuarioFechaAlta = usuarioFechaAlta;
     }
+
+    public String getUsuarioFechaModificacion() {
+        return usuarioFechaModificacion;
+    }
+
+    public void setUsuarioFechaModificacion(String usuarioFechaModificacion) {
+        this.usuarioFechaModificacion = usuarioFechaModificacion;
+    }
+
+    public Object getImagenId() {
+        return imagenId;
+    }
+
+    public void setImagenId(Object imagenId) {
+        this.imagenId = imagenId;
+    }
+
 }

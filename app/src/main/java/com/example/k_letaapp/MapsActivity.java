@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -14,7 +13,6 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -60,8 +58,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast toast= Toast.makeText(getApplicationContext(), "Añadir un nuevo punto", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
-                //Intent intent = new Intent(getApplicationContext(), FormularioServicioActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), RegistrarHuariqueActivity.class);
+                startActivity(intent);
             }
         });
 
